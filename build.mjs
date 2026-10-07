@@ -1,6 +1,7 @@
 // Builds the static site into ./site  ->  node build.mjs
 // No dependencies. Edit src/config.mjs for facts, src/pages.mjs for copy.
-import { mkdirSync, writeFileSync, copyFileSync, rmSync, readdirSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, copyFileSync, rmSync, readdirSync, existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site } from './src/config.mjs';
@@ -19,9 +20,15 @@ for (const entry of readdirSync(out)) {
   if (entry !== 'assets' && entry !== 'favicon.ico') rmSync(join(out, entry), { recursive: true, force: true });
 }
 
+// Stamp CSS and JS links with a hash of their contents, so browsers fetch the
+// new file the moment it changes and can cache it for a long time otherwise.
+const hash = (file) => createHash('sha256').update(readFileSync(join(root, file))).digest('hex').slice(0, 10);
+const versions = { 'styles.css': hash('src/styles.css'), 'main.js': hash('src/main.js') };
+const stamp = (html) => html.replace(/\/assets\/(styles\.css|main\.js)\?v=\w+/g, (_, f) => `/assets/${f}?v=${versions[f]}`);
+
 const pages = buildPages();
 for (const [path, html] of pages) {
-  write(path.endsWith('/') ? `${path}index.html` : path, html);
+  write(path.endsWith('/') ? `${path}index.html` : path, stamp(html));
 }
 
 copyFileSync(join(root, 'src/styles.css'), join(out, 'assets/styles.css'));
