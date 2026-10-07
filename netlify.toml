@@ -1,0 +1,5 @@
+# The site is pre-built and committed in ./site, so Netlify has nothing to run.
+# To change anything: edit src/, run `node build.mjs`, commit, push.
+[build]
+  publish = "site"
+  command = ""
