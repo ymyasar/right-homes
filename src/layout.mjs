@@ -213,7 +213,7 @@ export function enquiryForm({ heading = 'Send an enquiry', intro = '', type = ''
   </div>
   <div class="field"><label for="${id}-property">Property address or postcode <span class="opt">optional</span></label><input id="${id}-property" name="property" type="text" autocomplete="street-address"></div>
   <div class="field"><label for="${id}-message">Anything we should know? <span class="opt">optional</span></label><textarea id="${id}-message" name="message" rows="4"></textarea></div>
-  <button class="btn btn-green btn-block" type="submit">${button}</button>
+  <button class="btn btn-brand btn-block" type="submit">${button}</button>
   <p class="form-note">We reply by phone. Your details are only used to answer this enquiry. <a href="/privacy/">Privacy</a></p>
   <p class="form-status" role="status" aria-live="polite" hidden></p>
 </form>`;
@@ -232,7 +232,7 @@ export function contactPanel() {
 }
 
 export function ctaBand({ title, text, primary = ['/free-valuation/', 'Book a free valuation'] }) {
-  return `<section class="band band-green cta-band">
+  return `<section class="band band-brand cta-band">
   <div class="wrap cta-row">
     <div><h2>${title}</h2><p>${text}</p></div>
     <div class="cta-actions"><a class="btn btn-gold" href="${primary[0]}">${primary[1]}</a><a class="btn btn-ghost" href="${tel}">${icon.phone}${site.phoneDisplay}</a></div>
@@ -252,7 +252,7 @@ export function page({ path, title, description, body, schema = [], bodyClass = 
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${canonical}">`}
-<meta name="theme-color" content="#14382e">
+<meta name="theme-color" content="#143f7a">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${esc(site.name)}">

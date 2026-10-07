@@ -155,7 +155,7 @@ function home() {
   </div>
 </section>
 
-<section class="band band-green split-band">
+<section class="band band-brand split-band">
   <div class="wrap split">
     <div class="split-col">
       <h2>Landlord register</h2>
@@ -183,7 +183,7 @@ function home() {
       ['We visit and price it', 'We look round, compare it with recent sales and lets on nearby streets, and explain the figure.'],
       ['You decide what happens next', 'Sell, let, or do nothing. The valuation is yours either way and nobody chases you.'],
     ])}
-    <div class="btn-row"><a class="btn btn-green" href="/free-valuation/">Book a free valuation</a></div>
+    <div class="btn-row"><a class="btn btn-brand" href="/free-valuation/">Book a free valuation</a></div>
   </div>
 </section>
 
@@ -258,7 +258,7 @@ function sell() {
     <aside class="aside-card">
       <h2>What is included</h2>
       ${ticks(['Free, no-obligation valuation', 'Comparable sales evidence for your street', 'Accompanied viewings', 'Buyers checked before offers are recommended', 'Regular updates from one named contact', 'Sale progression through to completion'])}
-      <a class="btn btn-green btn-block" href="/free-valuation/">Book a free valuation</a>
+      <a class="btn btn-brand btn-block" href="/free-valuation/">Book a free valuation</a>
     </aside>
   </div>
 </section>
@@ -464,7 +464,7 @@ function guaranteed() {
     <aside class="aside-card">
       <h2>In short</h2>
       ${ticks(['Fixed monthly payment', 'Agreed term', 'No void periods to cover', 'No arrears to chase', 'No tenant calls'])}
-      <a class="btn btn-green btn-block" href="#enquire">Ask for a figure</a>
+      <a class="btn btn-brand btn-block" href="#enquire">Ask for a figure</a>
       <p class="aside-note">The figure depends on the property, its condition and the area. We confirm it after seeing it.</p>
     </aside>
   </div>
@@ -671,13 +671,13 @@ function guide() {
 
       <h2>Get both figures for your property</h2>
       <p>We offer both services, so we have no reason to push you towards one. Ask for a rental appraisal and we will give you the market rent, our management fee and a guaranteed rent figure, so you can compare them properly.</p>
-      <p><a class="btn btn-green" href="/letting-agents-luton/#enquire">Request a rental appraisal</a></p>
+      <p><a class="btn btn-brand" href="/letting-agents-luton/#enquire">Request a rental appraisal</a></p>
       <p class="small-print">This guide is general information, not legal or financial advice. Rules for landlords change, so check the current position for your property before acting.</p>
     </div>
     <aside class="aside-card aside-sticky">
       <h2>Talk it through</h2>
       <p>Ten minutes on the phone will usually tell you which option fits.</p>
-      <a class="btn btn-green btn-block" href="${tel}">${icon.phone}${P}</a>
+      <a class="btn btn-brand btn-block" href="${tel}">${icon.phone}${P}</a>
       <a class="text-link" href="/guaranteed-rent-luton/">Guaranteed rent in Luton</a>
       <a class="text-link" href="/property-management-luton/">Property management in Luton</a>
     </aside>
@@ -819,7 +819,7 @@ function thanks() {
   <div class="wrap article-head">
     <h1>Thank you. We have your enquiry.</h1>
     <p class="lede">Someone from the office will call you back. If it is urgent, ring us on <a href="${tel}">${P}</a>.</p>
-    <div class="btn-row"><a class="btn btn-green" href="/">Back to the homepage</a><a class="btn btn-outline" href="/guides/">Read our guides</a></div>
+    <div class="btn-row"><a class="btn btn-brand" href="/">Back to the homepage</a><a class="btn btn-outline" href="/guides/">Read our guides</a></div>
   </div>
 </section>`;
   return page({ path, title: 'Enquiry received | Right Homes', description: 'Thank you for contacting Right Homes.', body, noindex: true });
