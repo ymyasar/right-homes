@@ -15,7 +15,7 @@ const FAQ = {
     ['How much does a valuation cost?', 'Nothing. A market appraisal is free and you are under no obligation to instruct us afterwards. We visit the property, look at what has sold nearby and tell you the price we would put it on at and why.'],
     ['What do I need before my home can go on the market?', 'A valid Energy Performance Certificate (EPC), proof of your identity and address for the anti-money-laundering checks every estate agent must carry out, and proof that you own the property. If your EPC has expired we can arrange a new one.'],
     ['How long does it take to sell a house in Luton?', 'It depends on the price, the property and the chain. Finding a buyer is usually the quicker part. The legal work after an offer is accepted commonly takes around three months, and longer if the chain is complicated. Pricing correctly on day one is what shortens it most.'],
-    ['What will it cost me to sell?', 'Our fee depends on the property and is confirmed in writing before you commit to anything. You will also need to budget for a solicitor or conveyancer and, if you do not have a valid one, an EPC. Call us and we will give you a figure for your property.'],
+    ['What will it cost me to sell?', `Our sales fee is ${site.fees.sales} of the sale price, confirmed in writing before you commit to anything. You will also need to budget for a solicitor or conveyancer and, if you do not have a valid one, an EPC.`],
     ['Do I have to be at the viewings?', 'No. We accompany viewings, so you do not need to take time off work or show strangers round your home yourself.'],
   ],
   landlords: [
@@ -23,12 +23,12 @@ const FAQ = {
     ['What is the difference between let only and full management?', 'With let only we find and reference the tenant and set up the tenancy, then you manage it yourself. With full management we also collect the rent, deal with repairs, carry out inspections and keep the safety certificates in date, so the tenant calls us and not you.'],
     ['What is guaranteed rent?', 'A fixed monthly payment to you for an agreed term, whether or not the property is occupied and whether or not the occupier has paid. In exchange the figure is normally below the full market rent. <a href="/guides/guaranteed-rent-vs-managed-lettings/">Our guide compares it with managed lettings</a>.'],
     ['How do you vet tenants?', 'Every applicant is referenced before a tenancy is offered. That covers identity and right to rent, income and employment, and previous landlord references where there are any. You see the result and you make the final decision.'],
-    ['How much do you charge landlords?', 'It depends on the service and the property. We give you the fee in writing before you sign anything, and the initial rental appraisal is free.'],
+    ['How much do you charge landlords?', `Full management is ${site.fees.management} of the rent. The market rental appraisal is free, and the terms are given to you in writing before you sign anything. Guaranteed rent, company lets and long-term leases work differently: you receive an agreed fixed figure instead.`],
   ],
   tenants: [
     ['What do I need to rent a property?', 'Photo ID and proof of your right to rent in the UK, proof of income such as payslips or an employment contract, and details for a previous landlord if you have one. Having these ready is the quickest way to secure a property you like.'],
     ['Will I be charged fees as a tenant?', 'Agents in England cannot charge tenants for viewings, referencing or administration. You pay the rent and a refundable tenancy deposit, which is capped by law at five weeks’ rent where the annual rent is under £50,000. A refundable holding deposit of up to one week’s rent can be taken to reserve a property.'],
-    ['How do I hear about properties?', 'Join the tenant register. Tell us the area, size and budget you are looking for and we will call you when something suitable comes in, often before it is advertised anywhere else.'],
+    ['How do I hear about properties?', 'Join the tenant register. Tell us the area, size and budget you are looking for and we will call you when something suitable comes in, often before it is advertised anywhere else. We let rooms, studio flats, one bedroom flats, two and three bedroom flats and houses, and four and five bedroom homes.'],
     ['Is my deposit protected?', 'Yes. Tenancy deposits have to be protected in a government-approved scheme and you must be told which one within 30 days of paying.'],
   ],
 };
@@ -78,7 +78,7 @@ const related = (items) => `<section class="band">
 function home() {
   const path = '/';
   const title = 'Estate & Letting Agents in Luton | Right Homes';
-  const description = `Independent estate and letting agents on George Street, Luton. Free valuations, lettings, management and guaranteed rent across LU1 to LU4. Call ${P}.`;
+  const description = `Sales and letting agents on George Street, Luton. ${site.fees.sales} sales fee, ${site.fees.management} management fee, guaranteed rent with no voids. Luton and Bedfordshire. Call ${P}.`;
   const r = site.rating;
 
   const reviews = site.reviews.length ? `<section class="band">
@@ -93,10 +93,10 @@ function home() {
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Estate and letting agents in Luton</h1>
-      <p class="hero-lede">Right Homes sells, lets and manages homes across Luton from an office on George Street. Tell us what you need and you will speak to someone who knows your street.</p>
+      <p class="hero-lede">Right Homes sells, lets and manages homes across Luton and Bedfordshire from an office on George Street. Tell us what you need and let the experts take care of everything.</p>
       <ul class="routes">
         <li><a href="/free-valuation/"><strong>I want to sell</strong><span>Book a free valuation</span></a></li>
-        <li><a href="/letting-agents-luton/"><strong>I am a landlord</strong><span>Let or manage a property</span></a></li>
+        <li><a href="/letting-agents-luton/"><strong>I am a landlord</strong><span>Sell, rent or manage your property</span></a></li>
         <li><a href="/tenants/"><strong>I want to rent</strong><span>Join the tenant register</span></a></li>
       </ul>
       <p class="hero-call">Or call <a href="${tel}">${P}</a> or <a href="${telMobile}">${site.mobileDisplay}</a></p>
@@ -110,10 +110,10 @@ function home() {
 
 <section class="facts" aria-label="About Right Homes">
   <dl class="wrap facts-row">
-    <div><dt>${site.yearsEstablished} years</dt><dd>in Luton property</dd></div>
-    <div><dt>${site.propertiesManaged}</dt><dd>properties managed</dd></div>
-    <div><dt>LU1 to LU4</dt><dd>every Luton postcode</dd></div>
-    <div><dt>George Street</dt><dd>town centre office</dd></div>
+    <div><dt>${site.fees.sales} sales fee</dt><dd>when we sell your home</dd></div>
+    <div><dt>${site.fees.management} management fee</dt><dd>fully managed lettings</dd></div>
+    <div><dt>Rent guaranteed</dt><dd>with no void periods</dd></div>
+    <div><dt>Luton &amp; Bedfordshire</dt><dd>from our George Street office</dd></div>
   </dl>
 </section>
 
@@ -121,7 +121,7 @@ function home() {
   <div class="wrap">
     <div class="section-head">
       <h2>What we do</h2>
-      <p class="lede">Sales, lettings and management from one office, so you deal with the same people whichever you need.</p>
+      <p class="lede">Sell, rent and manage your properties from one office, so you deal with the same people whichever you need.</p>
     </div>
     <div class="rows">
       <article class="row">
@@ -129,7 +129,7 @@ function home() {
         <div class="row-copy">
           <h3><a href="/sell-your-home-luton/">Selling your home</a></h3>
           <p>A price based on what has sold near you, marketing that shows the property properly, and someone negotiating on your side until the keys change hands.</p>
-          ${ticks(['Free valuation with no obligation', 'Accompanied viewings', 'One point of contact through to completion'])}
+          ${ticks([`${site.fees.sales} sales fee`, 'Free valuation with no obligation', 'Prominent marketing and accompanied viewings'])}
           <a class="text-link" href="/sell-your-home-luton/">How we sell homes in Luton</a>
         </div>
       </article>
@@ -138,7 +138,7 @@ function home() {
         <div class="row-copy">
           <h3><a href="/letting-agents-luton/">Letting your property</a></h3>
           <p>We find the tenant, reference them and set up the tenancy correctly, so the rent arrives and the paperwork stands up.</p>
-          ${ticks(['Fully referenced tenants', 'Tenancy set up and deposit protected', 'Guaranteed rent available'])}
+          ${ticks(['Free market rental appraisal', 'Full tenant referencing, legal documents and inventory', 'Company lets, long-term leases and guaranteed rent'])}
           <a class="text-link" href="/letting-agents-luton/">Lettings for Luton landlords</a>
         </div>
       </article>
@@ -147,7 +147,7 @@ function home() {
         <div class="row-copy">
           <h3><a href="/property-management-luton/">Managing it for you</a></h3>
           <p>Rent collection, repairs, inspections and safety certificates handled from our office. Your tenant calls us, not you.</p>
-          ${ticks(['Repairs and maintenance arranged', 'Regular inspections', 'Compliance kept in date'])}
+          ${ticks([`${site.fees.management} management fee`, 'Rental collection and maintenance services', 'Inspections, with feedback to you'])}
           <a class="text-link" href="/property-management-luton/">Property management in Luton</a>
         </div>
       </article>
@@ -158,15 +158,16 @@ function home() {
 <section class="band band-brand split-band">
   <div class="wrap split">
     <div class="split-col">
-      <h2>Landlord register</h2>
-      <p>Put your property in front of referenced tenants who are already looking across Luton and Bedfordshire.</p>
-      ${ticks(['Guaranteed rent options', 'Strict tenant vetting', 'Free initial rental appraisal'], 'ticks-light')}
-      <a class="btn btn-gold" href="/letting-agents-luton/#enquire">Register as a landlord</a>
+      <h2>Got an empty property?</h2>
+      <p>Turn it into a long-term lease. We offer a secure, fully managed letting solution, and connect landlords with supported living providers looking for long-term homes across the UK.</p>
+      ${ticks(['Rent guaranteed, with no void periods', 'Company lets and long-term leases', 'Hassle-free maintenance'], 'ticks-light')}
+      <p class="split-strap"><strong>Reliable income. Zero hassle.</strong></p>
+      <a class="btn btn-gold" href="/guaranteed-rent-luton/">How guaranteed rent works</a>
     </div>
     <div class="split-col">
-      <h2>Tenant register</h2>
-      <p>Hear about homes before they reach the portals. Tell us what you need and we will call when it comes in.</p>
-      ${ticks(['Priority property alerts', 'Accompanied, flexible viewings', 'Clear referencing with no hidden fees'], 'ticks-light')}
+      <h2>Tenants, register with us today</h2>
+      <p>Move with us, make the right move. Tell us what you need and we will call when it comes in.</p>
+      ${ticks(['Rooms and studio flats', 'One, two and three bedroom flats and houses', 'Four and five bedroom homes'], 'ticks-light')}
       <a class="btn btn-ghost" href="/tenants/#enquire">Register as a tenant</a>
     </div>
   </div>
@@ -238,7 +239,7 @@ ${reviews}
 function sell() {
   const path = '/sell-your-home-luton/';
   const title = 'Sell Your Home in Luton | Estate Agents | Right Homes';
-  const description = 'Selling a house or flat in Luton? Right Homes gives you an evidence-based price, accompanied viewings and one contact through to completion. Free valuation.';
+  const description = `Selling a house or flat in Luton? ${site.fees.sales} sales fee, an evidence-based price, accompanied viewings and one contact through to completion. Free valuation.`;
   const trail = [['/', 'Home'], [path, 'Sell your home in Luton']];
   const body = `${pageHero({ trail, h1: 'Sell your home in Luton', lede: 'A sale goes well when the price is right on day one and someone keeps hold of it until completion. That is the job we do.', image: 'wisteria', primary: ['/free-valuation/', 'Book a free valuation'] })}
 
@@ -257,7 +258,7 @@ function sell() {
     </div>
     <aside class="aside-card">
       <h2>What is included</h2>
-      ${ticks(['Free, no-obligation valuation', 'Comparable sales evidence for your street', 'Accompanied viewings', 'Buyers checked before offers are recommended', 'Regular updates from one named contact', 'Sale progression through to completion'])}
+      ${ticks([`${site.fees.sales} sales fee`, 'Free, no-obligation valuation', 'Comparable sales evidence for your street', 'Accompanied viewings', 'Buyers checked before offers are recommended', 'Regular updates from one named contact', 'Sale progression through to completion'])}
       <a class="btn btn-brand btn-block" href="/free-valuation/">Book a free valuation</a>
     </aside>
   </div>
@@ -340,9 +341,9 @@ ${ctaBand({ title: 'Rather talk it through first?', text: 'Call the office and a
 function lettings() {
   const path = '/letting-agents-luton/';
   const title = 'Letting Agents in Luton for Landlords | Right Homes';
-  const description = 'Luton letting agents for landlords. Referenced tenants, tenancies set up correctly, full management and guaranteed rent options. Free rental appraisal.';
+  const description = `Luton letting agents for landlords. ${site.fees.management} management fee, full tenant referencing, company lets, long-term leases and guaranteed rent. Free rental appraisal.`;
   const trail = [['/', 'Home'], [path, 'Letting agents in Luton']];
-  const body = `${pageHero({ trail, h1: 'Letting agents in Luton', lede: 'We find tenants who pay and stay, set the tenancy up properly, and manage it for you if you would rather not take the calls.', image: 'keys', primary: ['#enquire', 'Get a free rental appraisal'] })}
+  const body = `${pageHero({ trail, h1: 'Letting agents in Luton', lede: 'Sell, rent and manage your properties with one agent. We find tenants who pay and stay, set the tenancy up properly, and take care of everything if you would rather not take the calls.', image: 'keys', primary: ['#enquire', 'Get a free rental appraisal'] })}
 
 <section class="band">
   <div class="wrap">
@@ -351,21 +352,28 @@ function lettings() {
       <li>
         <h3>Let only</h3>
         <p>We market the property, carry out viewings, reference the tenant and set up the tenancy. You manage it from there.</p>
-        ${ticks(['Marketing and accompanied viewings', 'Full tenant referencing', 'Tenancy agreement and deposit registration'])}
+        ${ticks(['Prominent marketing and website advertisement', 'Full tenant referencing', 'Legal documents and inventory prepared'])}
       </li>
       <li>
         <h3><a href="/property-management-luton/">Full management</a></h3>
         <p>Everything in let only, then we run the tenancy: rent, repairs, inspections and certificates.</p>
-        ${ticks(['Rent collected and paid over to you', 'Repairs arranged with your approval', 'Inspections and compliance kept up to date'])}
+        ${ticks([`${site.fees.management} management fee`, 'Rental collection and maintenance services', 'Inspections, with feedback to you'])}
         <a class="text-link" href="/property-management-luton/">Property management</a>
       </li>
       <li>
         <h3><a href="/guaranteed-rent-luton/">Guaranteed rent</a></h3>
-        <p>A fixed payment every month for an agreed term, whether the property is occupied or not.</p>
-        ${ticks(['No void periods to cover', 'No arrears to chase', 'A known income for the whole term'])}
+        <p>A fixed payment every month for an agreed term, whether the property is occupied or not. Reliable income, zero hassle.</p>
+        ${ticks(['Company lets and long-term leases', 'No void periods to cover', 'Hassle-free maintenance'])}
         <a class="text-link" href="/guaranteed-rent-luton/">Guaranteed rent in Luton</a>
       </li>
     </ul>
+  </div>
+</section>
+
+<section class="band band-brand">
+  <div class="wrap">
+    <div class="section-head"><h2>Let the experts take care of everything</h2><p class="lede">What a landlord gets from Right Homes.</p></div>
+    ${ticks(['Free market rental appraisals', 'Prominent marketing', 'Website advertisement', 'Full tenant referencing', 'Legal documents', 'Inventory preparation', 'Maintenance services', 'Rental collection', 'Inspections and feedback'], 'ticks-light ticks-cols')}
   </div>
 </section>
 
@@ -394,7 +402,7 @@ function lettings() {
   </div>
 </section>
 
-${formSection({ title: 'Find out what your property should let for', text: 'A free rental appraisal, with a clear recommendation on which service suits you.', type: 'Letting or managing a property', button: 'Request a rental appraisal', pagePath: path, points: ['Free and without obligation', 'Rent figure based on current lets nearby', 'Fees confirmed in writing before you commit'] })}
+${formSection({ title: 'Find out what your property should let for', text: 'A free rental appraisal, with a clear recommendation on which service suits you.', type: 'Letting or managing a property', button: 'Request a rental appraisal', pagePath: path, points: ['Free and without obligation', 'Rent figure based on current lets nearby', `${site.fees.management} management fee, confirmed in writing`] })}
 ${related([['/property-management-luton/', 'Property management', 'What full management covers day to day.'], ['/guaranteed-rent-luton/', 'Guaranteed rent', 'How a fixed monthly payment works.'], ['/guides/guaranteed-rent-vs-managed-lettings/', 'Guide: guaranteed rent or managed?', 'The trade-offs, and the questions to ask.']])}`;
   return page({ path, title, description, body, schema: [crumbSchema(trail), serviceSchema('Residential lettings in Luton', description, path)] });
 }
@@ -403,9 +411,9 @@ ${related([['/property-management-luton/', 'Property management', 'What full man
 function management() {
   const path = '/property-management-luton/';
   const title = 'Property Management in Luton | Right Homes';
-  const description = 'Full property management for Luton landlords: rent collection, repairs, inspections and safety compliance from a local office, with one point of contact.';
+  const description = `Full property management for Luton landlords at a ${site.fees.management} management fee: rent collection, maintenance, inspections and compliance from a local office.`;
   const trail = [['/', 'Home'], ['/letting-agents-luton/', 'Letting agents in Luton'], [path, 'Property management']];
-  const body = `${pageHero({ trail, h1: 'Property management in Luton', lede: 'Your tenant calls us, not you. We collect the rent, fix what breaks and keep the property legal, and you hear from one person who knows the file.', image: 'terrace', primary: ['#enquire', 'Ask about management'] })}
+  const body = `${pageHero({ trail, h1: 'Property management in Luton', lede: `Your tenant calls us, not you. For a ${site.fees.management} management fee we collect the rent, fix what breaks and keep the property legal. We handle everything so you do not have to.`, image: 'terrace', primary: ['#enquire', 'Ask about management'] })}
 
 <section class="band">
   <div class="wrap">
@@ -424,6 +432,8 @@ function management() {
 <section class="band band-stone">
   <div class="wrap prose-grid">
     <div class="prose">
+      <h2>Experts in social housing and property management</h2>
+      <p>As well as ordinary private lets, we arrange company lets and long-term leases, including with supported living and social housing providers. That gives a landlord secure, dependable occupiers and long-term stability for the property.</p>
       <h2>Who full management suits</h2>
       <p>Landlords who work full time, live away from Luton, own more than one property, or simply do not want a phone call about a boiler on a Sunday evening. It also suits anyone who is not confident keeping up with the rules, because the liability for a missed certificate or an unprotected deposit sits with the landlord.</p>
       <h2>A portfolio, or a single flat</h2>
@@ -435,7 +445,7 @@ function management() {
   </div>
 </section>
 
-${formSection({ title: 'Hand over the day-to-day', text: 'Tell us about the property and we will come back with what management would cost.', type: 'Letting or managing a property', button: 'Ask about management', pagePath: path, points: ['One point of contact', 'Fees confirmed in writing first', 'Existing tenancies welcome'] })}
+${formSection({ title: 'Hand over the day-to-day', text: 'Tell us about the property and we will come back with what management would cost.', type: 'Letting or managing a property', button: 'Ask about management', pagePath: path, points: [`${site.fees.management} management fee`, 'One point of contact', 'Existing tenancies welcome'] })}
 ${related([['/letting-agents-luton/', 'Letting agents in Luton', 'Let only, managed and guaranteed rent compared.'], ['/guaranteed-rent-luton/', 'Guaranteed rent', 'A fixed income with no voids.'], ['/faq/', 'Questions and answers', 'Legal requirements and fees.']])}`;
   return page({ path, title, description, body, schema: [crumbSchema(trail), serviceSchema('Property management in Luton', description, path)] });
 }
@@ -444,9 +454,9 @@ ${related([['/letting-agents-luton/', 'Letting agents in Luton', 'Let only, mana
 function guaranteed() {
   const path = '/guaranteed-rent-luton/';
   const title = 'Guaranteed Rent in Luton for Landlords | Right Homes';
-  const description = 'Guaranteed rent for Luton landlords: a fixed monthly payment for an agreed term, with no voids to cover and no arrears to chase. Ask for a figure.';
+  const description = 'Got an empty property? Guaranteed rent, company lets and long-term leases for landlords: a fixed monthly payment with no void periods. Ask for a figure.';
   const trail = [['/', 'Home'], ['/letting-agents-luton/', 'Letting agents in Luton'], [path, 'Guaranteed rent']];
-  const body = `${pageHero({ trail, h1: 'Guaranteed rent in Luton', lede: 'A fixed payment into your account every month for an agreed term, whether the property is occupied or not.', image: 'model', primary: ['#enquire', 'Ask for a guaranteed rent figure'] })}
+  const body = `${pageHero({ trail, h1: 'Guaranteed rent in Luton', lede: 'Reliable income, zero hassle. A fixed payment into your account every month for an agreed term, whether the property is occupied or not.', image: 'model', primary: ['#enquire', 'Ask for a guaranteed rent figure'] })}
 
 <section class="band">
   <div class="wrap prose-grid">
@@ -454,6 +464,9 @@ function guaranteed() {
       <h2>How it works</h2>
       <p>With an ordinary let, your income depends on the property being occupied and the tenant paying. With guaranteed rent, we agree a monthly figure and a term with you at the start, and that figure is what you receive.</p>
       <p>The trade-off is simple. In return for certainty, the guaranteed figure is normally lower than the full market rent you might achieve by letting it yourself in a good year.</p>
+      <h2>Got an empty property? Turn it into a long-term lease</h2>
+      <p>We connect landlords with supported living providers and companies looking for long-term homes, in Luton, across Bedfordshire and around the UK. The provider takes the property on a company let or long-term lease, the rent is guaranteed and there are no void periods.</p>
+      ${ticks(['Company lets', 'Long-term leases', 'Guaranteed rent', 'Hassle-free maintenance', 'No voids'])}
       <h2>When it makes sense</h2>
       ${ticks(['You have a mortgage payment to meet and cannot carry an empty month', 'You live away from Luton or abroad', 'You have had a bad experience with arrears', 'You own several properties and want predictable income', 'You want no day-to-day involvement at all'])}
       <h2>What to ask any provider, including us</h2>
@@ -463,7 +476,7 @@ function guaranteed() {
     </div>
     <aside class="aside-card">
       <h2>In short</h2>
-      ${ticks(['Fixed monthly payment', 'Agreed term', 'No void periods to cover', 'No arrears to chase', 'No tenant calls'])}
+      ${ticks(['Rent guaranteed', 'No void periods', 'Secure, dependable tenants', 'Long-term stability for your property', 'We handle everything so you do not have to'])}
       <a class="btn btn-brand btn-block" href="#enquire">Ask for a figure</a>
       <p class="aside-note">The figure depends on the property, its condition and the area. We confirm it after seeing it.</p>
     </aside>
@@ -479,9 +492,16 @@ ${related([['/guides/guaranteed-rent-vs-managed-lettings/', 'Guide: guaranteed r
 function tenants() {
   const path = '/tenants/';
   const title = 'Houses & Flats to Rent in Luton | Right Homes';
-  const description = 'Looking to rent in Luton? Join the Right Homes tenant register and hear about houses and flats before they are advertised. No tenant fees.';
+  const description = 'Looking to rent in Luton? Rooms, studios, flats and houses from one to five bedrooms. Register with Right Homes and hear about homes early. No tenant fees.';
   const trail = [['/', 'Home'], [path, 'Renting in Luton']];
-  const body = `${pageHero({ trail, h1: 'Find a home to rent in Luton', lede: 'Good rentals in Luton go quickly. Join the register, tell us what you need, and we will call you when the right place comes in.', image: 'kitchen', primary: ['#enquire', 'Join the tenant register'] })}
+  const body = `${pageHero({ trail, h1: 'Find a home to rent in Luton', lede: 'Move with us, make the right move. Good rentals in Luton go quickly, so register today, tell us what you need, and we will call you when the right place comes in.', image: 'kitchen', primary: ['#enquire', 'Join the tenant register'] })}
+
+<section class="band band-brand">
+  <div class="wrap">
+    <div class="section-head"><h2>What we let</h2><p class="lede">Whatever size of home you need, register and tell us.</p></div>
+    ${ticks(['Rooms', 'Studio flats', 'One bedroom flats', 'Two and three bedroom flats and houses', 'Four and five bedroom homes'], 'ticks-light ticks-cols')}
+  </div>
+</section>
 
 <section class="band">
   <div class="wrap">
@@ -527,7 +547,7 @@ ${formSection({ title: 'Join the tenant register', text: 'Tell us what you are l
 function areas() {
   const path = '/areas/';
   const title = 'Areas We Cover in Luton: LU1, LU2, LU3, LU4 | Right Homes';
-  const description = 'Right Homes sells and lets property across Luton: town centre, Bury Park, High Town, Stopsley, Wigmore, Limbury, Bramingham, Leagrave and more.';
+  const description = 'Right Homes sells and lets property across Luton and Bedfordshire: town centre, Bury Park, High Town, Stopsley, Wigmore, Limbury, Bramingham, Leagrave and more.';
   const trail = [['/', 'Home'], [path, 'Areas we cover']];
   const district = (code, names, text) => `<article class="district"><h3><span class="plaque plaque-wide" aria-hidden="true">${code}</span><span class="vh">${code}: </span>${names}</h3><p>${text}</p></article>`;
   const body = `${pageHero({ trail, h1: 'Areas we cover in Luton', lede: 'From our office on George Street we sell, let and manage homes in every Luton postcode and the surrounding parts of Bedfordshire.', image: 'postbox', primary: ['/free-valuation/', 'Book a free valuation'] })}

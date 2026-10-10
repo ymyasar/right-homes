@@ -88,7 +88,7 @@ function footer() {
   <div class="wrap foot-grid">
     <div class="foot-brand">
       <a class="logo logo-plate" href="/" aria-label="${esc(site.name)} home">${logoImg}</a>
-      <p>Independent estate and letting agents in Luton town centre. Sales, lettings and property management across LU1 to LU4.</p>
+      <p>Sales and letting agents in Luton town centre. Sales, lettings and property management across Luton and Bedfordshire.</p>
       <address>
         ${esc(a.street)}<br>${esc(a.town)}, ${esc(a.county)}<br>${esc(a.postcode)}
       </address>

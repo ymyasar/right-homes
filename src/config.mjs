@@ -26,15 +26,16 @@ export const site = {
   },
 
   // ADD when known. Each of these appears on the site as soon as it is filled.
-  email: '',              // e.g. 'hello@righthomesestates.com'
+  // From the leaflets. Swap for info@righthomesestates.com once Google Workspace is live.
+  email: 'righthomes12@gmail.com',
   hours: [],              // e.g. [['Monday to Saturday', '10am to 4pm'], ['Sunday', 'Closed']]
   companyNumber: '',      // Companies House number
   googleReviewsUrl: '',   // link to the Google Business Profile reviews
   whatsapp: false,        // true adds a WhatsApp button using the mobile number above
 
-  // Claims carried over from the previous site.
-  yearsEstablished: '15+',
-  propertiesManaged: '500+',
+  // Headline fees, as printed on the leaflets. CONFIRM whether VAT is added on top:
+  // if it is, the law requires the VAT-inclusive figure to be shown instead.
+  fees: { management: '10%', sales: '1%' },
 
   // No public rating is shown. The GetAgent rating used before belonged to the
   // Cheapside branch, not this office. Fill these in only with this office's own.

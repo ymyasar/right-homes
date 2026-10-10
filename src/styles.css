@@ -131,6 +131,7 @@ h3{font-family:var(--body);font-weight:600;font-size:1.25rem;line-height:1.25;co
 .band-stone{background:var(--stone)}
 .band-brand{background:var(--brand);color:#e1e8f1}
 .band-brand h2,.band-brand h3{color:#fff}
+.band-brand .lede{color:#c9d5e6}
 .section-head{max-width:46rem;margin-bottom:clamp(2rem,4vw,3rem)}
 .section-head .lede{margin-top:.9rem}
 
@@ -152,6 +153,8 @@ h3{font-family:var(--body);font-weight:600;font-size:1.25rem;line-height:1.25;co
 .ticks li{display:flex;gap:.65rem;align-items:flex-start}
 .ticks .i{color:var(--brass-deep);margin-top:.22em;stroke-width:2.6}
 .ticks-light .i{color:var(--brass)}
+@media (min-width:700px){.ticks-cols{grid-template-columns:repeat(3,1fr);column-gap:2rem}}
+.split-strap{color:#fff}
 
 /* split band */
 .split{display:grid;gap:2.5rem}
@@ -276,7 +279,7 @@ h3{font-family:var(--body);font-weight:600;font-size:1.25rem;line-height:1.25;co
 .aside-note{font-size:.93rem;color:var(--muted);margin-top:1.1rem}
 
 .options{display:grid;gap:1.25rem}
-.options li{border-top:3px solid var(--brand);padding-top:1.25rem}
+.options>li{border-top:3px solid var(--brand);padding-top:1.25rem}
 .options h3{font:400 1.65rem/1.1 var(--display)}
 .options h3 a{text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:2px;text-underline-offset:.2em}
 .options p{margin-top:.7rem;color:var(--text)}
