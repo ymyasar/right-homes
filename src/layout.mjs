@@ -92,7 +92,8 @@ function footer() {
       <address>
         ${esc(a.street)}<br>${esc(a.town)}, ${esc(a.county)}<br>${esc(a.postcode)}
       </address>
-      <p><a class="foot-phone" href="${tel}">${site.phoneDisplay}</a><br><a class="foot-phone" href="${telMobile}">${site.mobileDisplay}</a>${site.email ? `<br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a>` : ''}</p>
+      <p><a class="foot-phone" href="${tel}">${site.phoneDisplay}</a><br><a class="foot-phone" href="${telMobile}">${site.mobileDisplay}</a></p>
+      ${site.emails.length ? `<ul class="foot-emails">${site.emails.map((e) => `<li><span>${esc(e.label)}</span> <a href="mailto:${esc(e.address)}">${esc(e.address)}</a></li>`).join('')}</ul>` : ''}
       ${hours}
     </div>
     <nav aria-label="Selling">
@@ -228,13 +229,15 @@ export function enquiryForm({ heading = 'Send an enquiry', intro = '', type = ''
 </form>`;
 }
 
-export function contactPanel() {
+/** `dept` is 'sales' or 'lettings' to show just that address; leave it out to list them all. */
+export function contactPanel(dept = '') {
+  const shown = site.emails.filter((e) => !dept || e.key === dept);
   const a = site.address;
   return `<div class="contact-panel">
   <a class="contact-phone" href="${tel}">${icon.phone}<span><small>Call the office</small>${site.phoneDisplay}</span></a>
   <p class="contact-line">${icon.phone}<span>Mobile <a href="${telMobile}">${site.mobileDisplay}</a></span></p>
   <p class="contact-line">${icon.pin}<span>${esc(a.street)}, ${esc(a.town)} ${esc(a.postcode)}<br><a href="${esc(a.mapsUrl)}" rel="noopener">Get directions</a></span></p>
-  ${site.email ? `<p class="contact-line">${icon.mail}<span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span></p>` : ''}
+  ${shown.length ? `<p class="contact-line">${icon.mail}<span>${shown.map((e) => `${shown.length > 1 ? `${esc(e.label)}: ` : ''}<a href="mailto:${esc(e.address)}">${esc(e.address)}</a>`).join('<br>')}</span></p>` : ''}
   ${site.hours.length ? `<p class="contact-line">${icon.clock}<span>${site.hours.map(([d, t]) => `${esc(d)}: ${esc(t)}`).join('<br>')}</span></p>` : ''}
   ${site.whatsapp ? `<p class="contact-line"><a class="btn btn-outline btn-sm" href="https://wa.me/${site.mobileE164.replace('+', '')}" rel="noopener">Message us on WhatsApp</a></p>` : ''}
   ${ratingLine('rating-dark')}

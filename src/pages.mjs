@@ -60,7 +60,7 @@ function formSection({ title, text, type, button, pagePath, points = [] }) {
       <h2>${title}</h2>
       <p class="lede">${text}</p>
       ${points.length ? ticks(points) : ''}
-      ${contactPanel()}
+      ${contactPanel(type === 'Free valuation' ? 'sales' : 'lettings')}
     </div>
     ${enquiryForm({ heading: button, type, button, page: pagePath })}
   </div>
@@ -302,7 +302,7 @@ function valuation() {
       <h1>Free house valuation in Luton</h1>
       <p class="lede">Find out what your property should sell or let for. We visit, compare it with what has gone on nearby and give you a figure you can rely on.</p>
       ${ticks(['Free, with no obligation to instruct us', 'Usually about half an hour at the property', 'Sales and rental figures if you want both', 'Covers every Luton postcode, LU1 to LU4'])}
-      ${contactPanel()}
+      ${contactPanel('sales')}
     </div>
     ${enquiryForm({ heading: 'Book your valuation', intro: 'Leave your number and we will call to agree a time.', type: 'Free valuation', button: 'Book my free valuation', page: path })}
   </div>

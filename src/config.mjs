@@ -26,8 +26,17 @@ export const site = {
   },
 
   // ADD when known. Each of these appears on the site as soon as it is filled.
-  // Namecheap Private Email mailbox. lettings@ and sales@ are aliases of it.
+  // Namecheap Private Email. info@ is the mailbox; the others are aliases of it.
+  // `email` is the main one (privacy notice, search engine data).
   email: 'info@righthomesestates.com',
+  // Every address shown on the site. `key` picks the one shown on a page:
+  // the selling pages show sales@, landlord and tenant pages show lettings@.
+  emails: [
+    { key: 'contact',  label: 'General enquiries', address: 'contact@righthomesestates.com' },
+    { key: 'sales',    label: 'Sales',             address: 'sales@righthomesestates.com' },
+    { key: 'lettings', label: 'Lettings',          address: 'lettings@righthomesestates.com' },
+    { key: 'info',     label: 'Information',       address: 'info@righthomesestates.com' },
+  ],
   hours: [],              // e.g. [['Monday to Saturday', '10am to 4pm'], ['Sunday', 'Closed']]
   companyNumber: '',      // Companies House number
   googleReviewsUrl: '',   // link to the Google Business Profile reviews
