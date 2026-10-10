@@ -26,8 +26,8 @@ export const site = {
   },
 
   // ADD when known. Each of these appears on the site as soon as it is filled.
-  // From the leaflets. Swap for info@righthomesestates.com once Google Workspace is live.
-  email: 'righthomes12@gmail.com',
+  // Namecheap Private Email mailbox. lettings@ and sales@ are aliases of it.
+  email: 'info@righthomesestates.com',
   hours: [],              // e.g. [['Monday to Saturday', '10am to 4pm'], ['Sunday', 'Closed']]
   companyNumber: '',      // Companies House number
   googleReviewsUrl: '',   // link to the Google Business Profile reviews
