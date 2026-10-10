@@ -5,9 +5,9 @@ import {
 } from './layout.mjs';
 
 const P = site.phoneDisplay;
-const HERO_IMG = { ratio: 1.25, widths: [420, 640, 840, 1080], sizes: '(min-width: 960px) 40vw, 86vw' };
-const SIDE_IMG = { ratio: 1.2, widths: [420, 640, 840, 1080], sizes: '(min-width: 960px) 36vw, 86vw' };
-const ROW_IMG = { ratio: 0.8, widths: [480, 720, 960, 1280], sizes: '(min-width: 960px) 44vw, 100vw' };
+const HERO_IMG = { ratio: 1.25, sizes: '(min-width: 960px) 40vw, 86vw' };
+const SIDE_IMG = { ratio: 1.25, sizes: '(min-width: 960px) 36vw, 86vw' };
+const ROW_IMG = { ratio: 0.8, sizes: '(min-width: 960px) 44vw, 100vw' };
 
 // -------------------------------------------------------------- FAQ data ---
 const FAQ = {
@@ -190,8 +190,8 @@ function home() {
 <section class="band" id="areas">
   <div class="wrap areas-grid">
     <div class="areas-art">
-      <div class="areas-a">${picture('postbox', { ratio: 0.8, widths: [420, 640, 840], sizes: '(min-width: 960px) 30vw, 60vw' })}</div>
-      <div class="areas-b">${picture('park', { ratio: 1, widths: [320, 480, 640], sizes: '(min-width: 960px) 20vw, 40vw' })}</div>
+      <div class="areas-a">${picture('postbox', { ratio: 0.8, sizes: '(min-width: 960px) 30vw, 60vw' })}</div>
+      <div class="areas-b">${picture('park', { ratio: 1, sizes: '(min-width: 960px) 20vw, 40vw' })}</div>
     </div>
     <div>
       <h2>Across Luton, street by street</h2>
@@ -446,7 +446,7 @@ function guaranteed() {
   const title = 'Guaranteed Rent in Luton for Landlords | Right Homes';
   const description = 'Guaranteed rent for Luton landlords: a fixed monthly payment for an agreed term, with no voids to cover and no arrears to chase. Ask for a figure.';
   const trail = [['/', 'Home'], ['/letting-agents-luton/', 'Letting agents in Luton'], [path, 'Guaranteed rent']];
-  const body = `${pageHero({ trail, h1: 'Guaranteed rent in Luton', lede: 'A fixed payment into your account every month for an agreed term, whether the property is occupied or not.', image: 'semi', primary: ['#enquire', 'Ask for a guaranteed rent figure'] })}
+  const body = `${pageHero({ trail, h1: 'Guaranteed rent in Luton', lede: 'A fixed payment into your account every month for an agreed term, whether the property is occupied or not.', image: 'model', primary: ['#enquire', 'Ask for a guaranteed rent figure'] })}
 
 <section class="band">
   <div class="wrap prose-grid">
@@ -782,7 +782,7 @@ function privacy() {
       <p>To reply to your enquiry and, if you ask us to, to arrange a valuation, register you as a landlord or tenant, or provide our services. Our lawful basis is our legitimate interest in responding to people who contact us, and taking steps at your request before entering into a contract.</p>
       <p>We do not sell your information or pass it to anyone for their marketing.</p>
       <h2>Who processes it for us</h2>
-      <p>The website and its enquiry forms are hosted by Netlify, Inc., which stores form submissions on our behalf and may process them in the United States under appropriate safeguards. Photographs on the site are loaded from Unsplash’s image servers, which, like any web server, receive your IP address when your browser requests an image.</p>
+      <p>The website and its enquiry forms are hosted by Netlify, Inc., which stores form submissions on our behalf and may process them in the United States under appropriate safeguards.</p>
       <h2>How long we keep it</h2>
       <p>We keep enquiries only for as long as we need to deal with them. If you become a client, we keep records for as long as the law and our professional obligations require.</p>
       <h2>Your rights</h2>

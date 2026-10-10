@@ -6,7 +6,7 @@ Static site for righthomesestates.com, hosted on Netlify. No dependencies.
 
 | What | Where |
 |---|---|
-| Phone, address, email, opening hours, rating, reviews, fees | `src/config.mjs` |
+| Phone numbers, address, email, opening hours, rating, reviews, fees | `src/config.mjs` |
 | Page copy, FAQs, the guide | `src/pages.mjs` |
 | Header, footer, form, schema, page shell | `src/layout.mjs` |
 | Design | `src/styles.css` |
@@ -38,7 +38,18 @@ notification. Until detection is on, the form tells the visitor to call instead.
 
 ## Photos
 
-Free-licence photographs from Unsplash, loaded from Unsplash's image CDN at
-the right size for each screen. They are illustrative and the footer says so.
-To swap one, change its `id` in `src/config.mjs` (the id is the part after
-`photo-` in an Unsplash image address).
+The pictures are computer-generated illustrations, not real properties, and
+the footer of every page says they are illustrative. The originals are in
+`photos-src/`. To swap one, replace the file there (keep its name), then:
+
+```
+python3 tools/photos.py     # needs Pillow: pip install pillow
+node build.mjs
+```
+
+Alt text for each picture is in `src/config.mjs`.
+
+## Logo
+
+`site/assets/logo.png` and `logo@2x.png` are the Right Homes logo as supplied.
+The browser-tab icons and the social share image (`og.png`) are cut from it.

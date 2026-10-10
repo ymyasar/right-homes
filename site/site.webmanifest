@@ -3,8 +3,8 @@
   "short_name": "Right Homes",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#143f7a",
-  "theme_color": "#143f7a",
+  "background_color": "#ffffff",
+  "theme_color": "#1a3b7b",
   "icons": [
     {
       "src": "/assets/icon-192.png",

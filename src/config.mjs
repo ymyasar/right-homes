@@ -57,17 +57,19 @@ export const site = {
   },
 };
 
-// Free-to-use photographs from Unsplash, served from Unsplash's image CDN.
-// They are illustrative only and are labelled as such in the footer.
+// Photographs. The files are in photos-src/ under these names; see tools/photos.py.
+// They are computer-generated illustrations, not real properties, and the
+// footer of every page says they are illustrative.
 export const images = {
-  hero:     { id: '1604775567578-712a3acce497', alt: 'Terraced houses stepping down a hillside street in early evening light', by: 'Super Straho' },
-  semi:     { id: '1666560900588-324c2b398117', alt: 'Tree-lined residential street with semi-detached houses in autumn', by: 'Ben Elliott' },
-  terrace:  { id: '1773665230660-161c58f76c5f', alt: 'Row of gabled red-brick terraced houses with cars parked outside', by: 'Andri Aeschlimann' },
-  keys:     { id: '1741156386380-0236c72eb6f9', alt: 'Hand holding a set of house keys in a bright hallway', by: 'Jakub Żerdzicki' },
-  living:   { id: '1656122381069-9ec666d95cf1', alt: 'Bright living room with tall shuttered windows and pale sofas', by: 'Jake Goossen' },
-  park:     { id: '1692812957559-841d4d921698', alt: 'Low morning sun through mature trees in a park', by: 'Gordie Jackson' },
-  postbox:  { id: '1759403478100-92a1acc2d07e', alt: 'Red pillar box on a street of brick terraced houses', by: 'William V' },
-  wisteria: { id: '1623241187960-4a57f68560ea', alt: 'Red-brick corner house with a turret and wisteria in flower', by: 'Dan Loftus' },
-  kitchen:  { id: '1583845112239-97ef1341b271', alt: 'Kitchen with a round dining table, wooden chairs and open shelving', by: 'shche_ team' },
-  bay:      { id: '1676802584541-dc901dcaa815', alt: 'Bay-fronted Victorian terraced houses on a residential street', by: 'Alex' },
+  hero:     { alt: 'Red-brick detached house with a navy front door, lawn and block-paved path under a blue sky' },
+  semi:     { alt: 'Cream rendered detached house at dusk with its windows lit' },
+  terrace:  { alt: 'Row of modern red-brick terraced houses with small front gardens' },
+  keys:     { alt: 'Hand holding out house keys on a blue house keyring in front of a red-brick home' },
+  living:   { alt: 'Bright living room with a grey corner sofa, navy cushions and a large window' },
+  park:     { alt: 'Tree-lined street of brick semi-detached houses behind trimmed hedges' },
+  postbox:  { alt: 'View across streets of red-brick houses, gardens and a park, with hills beyond' },
+  wisteria: { alt: 'Red-brick semi-detached house with bay windows, a navy front door and a hedged front garden' },
+  kitchen:  { alt: 'White kitchen with a wooden worktop and a round dining table by the window' },
+  bay:      { alt: 'Three-storey red-brick apartment building with balconies and a landscaped garden' },
+  model:    { alt: 'Open hand holding a small blue model house' },
 };

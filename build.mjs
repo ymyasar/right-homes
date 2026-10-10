@@ -53,8 +53,8 @@ write('site.webmanifest', JSON.stringify({
   short_name: site.name,
   start_url: '/',
   display: 'browser',
-  background_color: '#143f7a',
-  theme_color: '#143f7a',
+  background_color: '#ffffff',
+  theme_color: '#1a3b7b',
   icons: [
     { src: '/assets/icon-192.png', sizes: '192x192', type: 'image/png' },
     { src: '/assets/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -64,7 +64,7 @@ write('site.webmanifest', JSON.stringify({
 // Netlify: security headers, long cache for versioned assets.
 const csp = [
   "default-src 'self'",
-  "img-src 'self' https://images.unsplash.com data:",
+  "img-src 'self' data:",
   "style-src 'self'",
   "script-src 'self'",
   "font-src 'self'",
@@ -106,5 +106,5 @@ write('_redirects', `
 /blog/*                  /guides/                       301
 `);
 
-const missing = ['assets/og.png', 'assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png', 'favicon.ico'].filter((f) => !existsSync(join(out, f)));
+const missing = ['assets/og.png', 'assets/logo.png', 'assets/logo@2x.png', 'assets/icon-192.png', 'assets/icon-512.png', 'assets/apple-touch-icon.png', 'favicon.ico'].filter((f) => !existsSync(join(out, f)));
 console.log(`Built ${pages.length} pages into site/` + (missing.length ? `\nMissing binary assets: ${missing.join(', ')}` : ''));

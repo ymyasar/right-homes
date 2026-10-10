@@ -1,4 +1,7 @@
+import { readFileSync } from 'node:fs';
 import { site, images } from './config.mjs';
+
+const photos = JSON.parse(readFileSync(new URL('./photos.json', import.meta.url), 'utf8'));
 
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const abs = (path) => site.url + path;
@@ -10,26 +13,30 @@ const c = site.compliance;
 export const hasFees = Boolean(c.redress && c.cmp && c.landlordFees.length && c.tenantFees.length);
 
 // ---------------------------------------------------------------- images ---
-const CROPS = { postbox: 'left' };
+// Photos live in photos-src/ and are cut to size by tools/photos.py, which
+// also writes src/photos.json (the widths available for each shape).
+const shapeFor = (ratio) => (ratio > 1.05 ? 'tall' : ratio < 0.95 ? 'wide' : 'square');
+const SHAPE_RATIO = { tall: 1.25, wide: 0.8, square: 1 };
 
-export function imgUrl(key, w, ratio) {
-  const im = images[key];
-  const h = Math.round(w * ratio);
-  const crop = CROPS[key] ? `&crop=${CROPS[key]}` : '';
-  return `https://images.unsplash.com/photo-${im.id}?auto=format&fit=crop${crop}&w=${w}&h=${h}&q=70`;
+export const imgUrl = (key, shape, w) => `/assets/photos/${key}-${shape}-${w}.webp`;
+
+function sources(key, ratio) {
+  const shape = shapeFor(ratio);
+  const widths = photos[key][shape];
+  const r = SHAPE_RATIO[shape];
+  return { shape, widths, r, srcset: widths.map((w) => `${imgUrl(key, shape, w)} ${w}w`).join(', ') };
 }
 
-/** ratio = height / width. widths = candidate pixel widths for srcset. */
-export function picture(key, { ratio = 0.8, widths = [480, 720, 960, 1280], sizes = '(min-width: 960px) 45vw, 100vw', cls = '', eager = false } = {}) {
+/** ratio = height / width. The nearest of the tall, wide and square crops is used. */
+export function picture(key, { ratio = 0.8, sizes = '(min-width: 960px) 45vw, 100vw', cls = '', eager = false } = {}) {
   const im = images[key];
-  const srcset = widths.map((w) => `${esc(imgUrl(key, w, ratio))} ${w}w`).join(', ');
+  const { shape, widths, r, srcset } = sources(key, ratio);
   const base = widths[Math.min(1, widths.length - 1)];
-  return `<img${cls ? ` class="${cls}"` : ''} src="${esc(imgUrl(key, base, ratio))}" srcset="${srcset}" sizes="${sizes}" width="${base}" height="${Math.round(base * ratio)}" alt="${esc(im.alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async">`;
+  return `<img${cls ? ` class="${cls}"` : ''} src="${imgUrl(key, shape, base)}" srcset="${srcset}" sizes="${sizes}" width="${base}" height="${Math.round(base * r)}" alt="${esc(im.alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async">`;
 }
 
-export function preloadImage(key, { ratio, widths, sizes }) {
-  const srcset = widths.map((w) => `${esc(imgUrl(key, w, ratio))} ${w}w`).join(', ');
-  return `<link rel="preload" as="image" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high">`;
+export function preloadImage(key, { ratio, sizes }) {
+  return `<link rel="preload" as="image" type="image/webp" imagesrcset="${sources(key, ratio).srcset}" imagesizes="${sizes}" fetchpriority="high">`;
 }
 
 // ----------------------------------------------------------------- icons ---
@@ -41,7 +48,8 @@ export const icon = {
   mail: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
   star: '<svg class="i star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.500 2.900 6 6.600.900-4.800 4.600 1.200 6.500L12 17.400 6.100 20.500l1.200-6.500L2.500 9.400l6.600-.9z"/></svg>',
 };
-const mark = '<svg class="mark" viewBox="0 0 32 40" aria-hidden="true"><path d="M3 38V15a13 13 0 0 1 26 0v23z"/><path class="mark-in" d="M10 38V16a6 6 0 0 1 12 0v22"/><circle class="mark-dot" cx="18.500" cy="27" r="1.500"/></svg>';
+// The Right Homes logo, exactly as supplied. Shown at the height set in styles.css.
+const logoImg = '<img src="/assets/logo.png" srcset="/assets/logo.png 1x, /assets/logo@2x.png 2x" width="240" height="155" alt="Right Homes, Sales &amp; Letting Agents">';
 
 // ------------------------------------------------------------------- nav ---
 export const NAV = [
@@ -59,7 +67,7 @@ function header(current) {
   return `<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="logo" href="/" aria-label="${esc(site.name)} home">${mark}<span>${esc(site.name)}</span></a>
+    <a class="logo" href="/" aria-label="${esc(site.name)} home">${logoImg}</a>
     <nav class="nav-desk" aria-label="Main">${navLinks(current)}</nav>
     <div class="header-cta">
       <a class="header-phone" href="${tel}">${icon.phone}<span>${site.phoneDisplay}</span></a>
@@ -79,7 +87,7 @@ function footer() {
   return `<footer class="site-footer">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="logo logo-light" href="/">${mark}<span>${esc(site.name)}</span></a>
+      <a class="logo logo-plate" href="/" aria-label="${esc(site.name)} home">${logoImg}</a>
       <p>Independent estate and letting agents in Luton town centre. Sales, lettings and property management across LU1 to LU4.</p>
       <address>
         ${esc(a.street)}<br>${esc(a.town)}, ${esc(a.county)}<br>${esc(a.postcode)}
@@ -137,7 +145,7 @@ export const agentSchema = () => {
     url: abs('/'),
     telephone: site.phoneE164,
     image: abs('/assets/og.png'),
-    logo: abs('/assets/icon-512.png'),
+    logo: abs('/assets/logo@2x.png'),
     address: { '@type': 'PostalAddress', streetAddress: a.street.replace('–', '-'), addressLocality: a.town, addressRegion: a.county, postalCode: a.postcode, addressCountry: 'GB' },
     areaServed: [
       { '@type': 'City', name: 'Luton' },
@@ -254,7 +262,7 @@ export function page({ path, title, description, body, schema = [], bodyClass = 
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${canonical}">`}
-<meta name="theme-color" content="#143f7a">
+<meta name="theme-color" content="#1a3b7b">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${esc(site.name)}">
@@ -268,12 +276,11 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:image:alt" content="${esc(site.name)}, estate and letting agents in Luton">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/cabin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/caslon-display.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 ${preload}
 <link rel="stylesheet" href="/assets/styles.css?v=${site.buildDate.replace(/-/g, '')}">
 <script type="application/ld+json">${JSON.stringify(graph).replace(/</g, '\\u003c')}</script>
