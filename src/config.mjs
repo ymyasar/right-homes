@@ -8,18 +8,21 @@ export const site = {
   name: 'Right Homes',
   legalName: 'Right Homes Sales & Lettings',
   url: 'https://righthomesestates.com',
-  buildDate: '2026-10-07',
+  buildDate: '2026-10-10',
 
-  phoneDisplay: '07902 858191',
-  phoneE164: '+447902858191',
+  // Office landline: the main number shown everywhere.
+  phoneDisplay: '01582 349155',
+  phoneE164: '+441582349155',
+  // Mobile: shown alongside the office number, and used for WhatsApp.
+  mobileDisplay: '07902 859191',
+  mobileE164: '+447902859191',
 
-  // CONFIRM: taken from public directory listings, not from the old site.
   address: {
-    street: '42–46 Cheapside',
+    street: 'Suite 5, 74 George Street',
     town: 'Luton',
     county: 'Bedfordshire',
-    postcode: 'LU1 2HN',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Right+Homes+42-46+Cheapside+Luton+LU1+2HN',
+    postcode: 'LU1 2BD',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=74+George+Street+Luton+LU1+2BD',
   },
 
   // ADD when known. Each of these appears on the site as soon as it is filled.
@@ -27,20 +30,15 @@ export const site = {
   hours: [],              // e.g. [['Monday to Saturday', '10am to 4pm'], ['Sunday', 'Closed']]
   companyNumber: '',      // Companies House number
   googleReviewsUrl: '',   // link to the Google Business Profile reviews
-  whatsapp: false,        // true adds a WhatsApp button using the phone number above
+  whatsapp: false,        // true adds a WhatsApp button using the mobile number above
 
   // Claims carried over from the previous site.
   yearsEstablished: '15+',
   propertiesManaged: '500+',
 
-  // Public rating, checked on the date shown. Update or blank it when it changes.
-  rating: {
-    value: '4.7',
-    count: 64,
-    source: 'GetAgent',
-    url: 'https://www.getagent.co.uk/branch/right-homes-lu1/66832',
-    checked: 'October 2026',
-  },
+  // No public rating is shown. The GetAgent rating used before belonged to the
+  // Cheapside branch, not this office. Fill these in only with this office's own.
+  rating: { value: '', count: 0, source: '', url: '', checked: '' },
 
   // Paste real client reviews here and a reviews section appears on the homepage.
   // { quote: '...', name: 'First name + initial', role: 'Landlord, LU2' }

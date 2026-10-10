@@ -1,6 +1,6 @@
 import { site } from './config.mjs';
 import {
-  page, picture, preloadImage, crumbs, ticks, steps, faqList, ratingLine, enquiryForm, contactPanel, ctaBand,
+  page, picture, preloadImage, crumbs, ticks, steps, faqList, ratingLine, enquiryForm, contactPanel, ctaBand, telMobile,
   crumbSchema, faqSchema, serviceSchema, icon, tel, abs, esc, hasFees, addressLine,
 } from './layout.mjs';
 
@@ -78,7 +78,7 @@ const related = (items) => `<section class="band">
 function home() {
   const path = '/';
   const title = 'Estate & Letting Agents in Luton | Right Homes';
-  const description = 'Independent estate and letting agents on Cheapside, Luton. Free valuations, lettings, management and guaranteed rent across LU1 to LU4. Call 07902 858191.';
+  const description = `Independent estate and letting agents on George Street, Luton. Free valuations, lettings, management and guaranteed rent across LU1 to LU4. Call ${P}.`;
   const r = site.rating;
 
   const reviews = site.reviews.length ? `<section class="band">
@@ -93,13 +93,13 @@ function home() {
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Estate and letting agents in Luton</h1>
-      <p class="hero-lede">Right Homes sells, lets and manages homes across Luton from an office on Cheapside. Tell us what you need and you will speak to someone who knows your street.</p>
+      <p class="hero-lede">Right Homes sells, lets and manages homes across Luton from an office on George Street. Tell us what you need and you will speak to someone who knows your street.</p>
       <ul class="routes">
         <li><a href="/free-valuation/"><strong>I want to sell</strong><span>Book a free valuation</span></a></li>
         <li><a href="/letting-agents-luton/"><strong>I am a landlord</strong><span>Let or manage a property</span></a></li>
         <li><a href="/tenants/"><strong>I want to rent</strong><span>Join the tenant register</span></a></li>
       </ul>
-      <p class="hero-call">Or call <a href="${tel}">${P}</a></p>
+      <p class="hero-call">Or call <a href="${tel}">${P}</a> or <a href="${telMobile}">${site.mobileDisplay}</a></p>
     </div>
     <div class="hero-art">
       <div class="arch">${picture('hero', { ...HERO_IMG, eager: true })}</div>
@@ -113,7 +113,7 @@ function home() {
     <div><dt>${site.yearsEstablished} years</dt><dd>in Luton property</dd></div>
     <div><dt>${site.propertiesManaged}</dt><dd>properties managed</dd></div>
     <div><dt>LU1 to LU4</dt><dd>every Luton postcode</dd></div>
-    <div><dt>Cheapside</dt><dd>town centre office</dd></div>
+    <div><dt>George Street</dt><dd>town centre office</dd></div>
   </dl>
 </section>
 
@@ -530,7 +530,7 @@ function areas() {
   const description = 'Right Homes sells and lets property across Luton: town centre, Bury Park, High Town, Stopsley, Wigmore, Limbury, Bramingham, Leagrave and more.';
   const trail = [['/', 'Home'], [path, 'Areas we cover']];
   const district = (code, names, text) => `<article class="district"><h3><span class="plaque plaque-wide" aria-hidden="true">${code}</span><span class="vh">${code}: </span>${names}</h3><p>${text}</p></article>`;
-  const body = `${pageHero({ trail, h1: 'Areas we cover in Luton', lede: 'From our office on Cheapside we sell, let and manage homes in every Luton postcode and the surrounding parts of Bedfordshire.', image: 'postbox', primary: ['/free-valuation/', 'Book a free valuation'] })}
+  const body = `${pageHero({ trail, h1: 'Areas we cover in Luton', lede: 'From our office on George Street we sell, let and manage homes in every Luton postcode and the surrounding parts of Bedfordshire.', image: 'postbox', primary: ['/free-valuation/', 'Book a free valuation'] })}
 
 <section class="band">
   <div class="wrap">
@@ -729,8 +729,8 @@ ${ctaBand({ title: 'Still have a question?', text: 'Ask the office directly.', p
 // =============================================================== CONTACT ===
 function contact() {
   const path = '/contact/';
-  const title = 'Contact Right Homes | Estate Agents, Cheapside, Luton';
-  const description = `Call Right Homes on ${P} or visit ${addressLine}. Estate and letting agents for sales, lettings and property management in Luton.`;
+  const title = 'Contact Right Homes | Estate Agents, George Street, Luton';
+  const description = `Call Right Homes on ${P} or ${site.mobileDisplay}, or visit ${addressLine}. Estate and letting agents for sales, lettings and property management in Luton.`;
   const trail = [['/', 'Home'], [path, 'Contact']];
   const body = `<section class="page-hero">
   <div class="wrap form-grid">

@@ -1,7 +1,7 @@
 // Right Homes: progressive enhancement only. The site works with this file missing.
 (function () {
   'use strict';
-  var PHONE = '07902 858191';
+  var PHONE = '01582 349155';
 
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

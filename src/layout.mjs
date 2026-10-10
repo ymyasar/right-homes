@@ -3,6 +3,7 @@ import { site, images } from './config.mjs';
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const abs = (path) => site.url + path;
 export const tel = `tel:${site.phoneE164}`;
+export const telMobile = `tel:${site.mobileE164}`;
 export const addressLine = `${site.address.street}, ${site.address.town} ${site.address.postcode}`;
 
 const c = site.compliance;
@@ -66,7 +67,7 @@ function header(current) {
     </div>
     <details class="nav-mob">
       <summary aria-label="Menu"><span></span><span></span><span></span></summary>
-      <nav aria-label="Mobile">${navLinks(current)}<a href="/free-valuation/">Free valuation</a><a href="${tel}">Call ${site.phoneDisplay}</a></nav>
+      <nav aria-label="Mobile">${navLinks(current)}<a href="/free-valuation/">Free valuation</a><a href="${tel}">Call ${site.phoneDisplay}</a><a href="${telMobile}">Mobile ${site.mobileDisplay}</a></nav>
     </details>
   </div>
 </header>`;
@@ -83,7 +84,7 @@ function footer() {
       <address>
         ${esc(a.street)}<br>${esc(a.town)}, ${esc(a.county)}<br>${esc(a.postcode)}
       </address>
-      <p><a class="foot-phone" href="${tel}">${site.phoneDisplay}</a>${site.email ? `<br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a>` : ''}</p>
+      <p><a class="foot-phone" href="${tel}">${site.phoneDisplay}</a><br><a class="foot-phone" href="${telMobile}">${site.mobileDisplay}</a>${site.email ? `<br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a>` : ''}</p>
       ${hours}
     </div>
     <nav aria-label="Selling">
@@ -223,10 +224,11 @@ export function contactPanel() {
   const a = site.address;
   return `<div class="contact-panel">
   <a class="contact-phone" href="${tel}">${icon.phone}<span><small>Call the office</small>${site.phoneDisplay}</span></a>
+  <p class="contact-line">${icon.phone}<span>Mobile <a href="${telMobile}">${site.mobileDisplay}</a></span></p>
   <p class="contact-line">${icon.pin}<span>${esc(a.street)}, ${esc(a.town)} ${esc(a.postcode)}<br><a href="${esc(a.mapsUrl)}" rel="noopener">Get directions</a></span></p>
   ${site.email ? `<p class="contact-line">${icon.mail}<span><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></span></p>` : ''}
   ${site.hours.length ? `<p class="contact-line">${icon.clock}<span>${site.hours.map(([d, t]) => `${esc(d)}: ${esc(t)}`).join('<br>')}</span></p>` : ''}
-  ${site.whatsapp ? `<p class="contact-line"><a class="btn btn-outline btn-sm" href="https://wa.me/${site.phoneE164.replace('+', '')}" rel="noopener">Message us on WhatsApp</a></p>` : ''}
+  ${site.whatsapp ? `<p class="contact-line"><a class="btn btn-outline btn-sm" href="https://wa.me/${site.mobileE164.replace('+', '')}" rel="noopener">Message us on WhatsApp</a></p>` : ''}
   ${ratingLine('rating-dark')}
 </div>`;
 }
